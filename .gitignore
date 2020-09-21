@@ -8,3 +8,5 @@ cmder/*
 .stfolder
 *syncless/
 *syncless*
+.netrwhist
+_.netrwhist
