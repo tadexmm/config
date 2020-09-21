@@ -1,0 +1,472 @@
+% (Actual) base file
+% Load packages
+\def\checkcommand{Section}
+\ifcsname\checkcommand\endcsname\endinput\else\fi
+\usepackage[a4paper,left=0.9in,right=0.9in,top=1in,bottom=1in]{geometry}
+\usepackage{amsmath,fancyhdr,amssymb,array,xspace,soul,float}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{booktabs}
+%\usepackage[sfdefault,scaled=.85]{FiraSans}
+%\usepackage[T1]{fontenc}
+%\usepackage{textcomp}
+%\usepackage[varqu,varl]{zi4}% inconsolata typewriter
+%\usepackage{amsmath,amsthm}
+%\usepackage{cmbright}
+\usepackage[default,tabular]{sourcesanspro}
+\usepackage{sansmathfonts}
+%\renewcommand{\mathdefault}{\sfdefault}
+%\usepackage[frenchmath]{newtxsf}
+\usepackage[italic]{mathastext}
+\everymath{\displaystyle}
+%\usepackage{color}
+%\everymath{\color{darkgray}}
+%\everydisplay{\color{gray}}
+%\sansmath
+%\renewcommand{\marginpar}{\marginnote}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[bordercolor=white,colorinlistoftodos,draft]{todonotes}
+%\usepackage{coloremoji}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{environ,xstring,forloop} 
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+\delimitershortfall=-1pt
+\newcommand\tabtext[1]{\text{\scriptsize\tabular[t]{@{}c@{}}#1\endtabular}}
+% Definining colors
+\colorlet{CodeGray}{lightgray!30}
+\colorlet{LightCodeGray}{lightgray!5}
+\colorlet{MethodOrange}{YellowOrange!50}
+\colorlet{PropertiesOrange}{YellowOrange!50!ProcessBlue!25}
+\colorlet{DefinitionBlue}{ProcessBlue!45}
+\colorlet{TheoremGreen}{YellowGreen!70}
+\colorlet{FormulaGreen}{SpringGreen!60}
+\colorlet{HuhRed}{red!80!}
+\colorlet{HuhPurple}{Orchid!60}
+\definecolor{DarkDandelion}{HTML}{A9740C}
+\definecolor{CondoPurple}{HTML}{AA22FF}
+% Change text color
+
+\newcommand{\inBlue}{\color{blue}}
+\newcommand{\inRed}{\color{red}}
+\newcommand{\inGrey}{\color{darkgray!60}}
+
+% For the code
+\newfloat{TestCases}{h}{.cds}
+\newfloat{Tried}{H}{.cdt}
+% Also for the code
+\usepackage{textcomp,listings}
+ \lstdefinestyle{FormattedConditionalsAndNumbers}{%
+literate=%
+ {=}{{\textcolor{CondoPurple}{=}}}{1}%
+ {>}{{\textcolor{CondoPurple}{>}}}{1}%
+ {<}{{\textcolor{CondoPurple}{<}}}{1}%
+ {!}{{\textcolor{CondoPurple}{!}}}{1}%
+ {+=}{{\textcolor{CondoPurple}{+=}}}{1}%
+ {-=}{{\textcolor{CondoPurple}{-=}}}{1}%
+ {*=}{{\textcolor{CondoPurple}{*=}}}{1}%
+ {**=}{{\textcolor{CondoPurple}{**=}}}{1}%
+ %}
+% %\lstdefinestyle{FormattedNumber}{%
+% %literate=%
+% {0}{{\textcolor{DarkDandelion}{0}}}{1}%
+% {1}{{\textcolor{DarkDandelion}{1}}}{1}%
+% {2}{{\textcolor{DarkDandelion}{2}}}{1}%
+% {3}{{\textcolor{DarkDandelion}{3}}}{1}%
+% {4}{{\textcolor{DarkDandelion}{4}}}{1}%
+% {5}{{\textcolor{DarkDandelion}{5}}}{1}%
+% {6}{{\textcolor{DarkDandelion}{6}}}{1}%
+% {7}{{\textcolor{DarkDandelion}{7}}}{1}%
+% {8}{{\textcolor{DarkDandelion}{8}}}{1}%
+% {9}{{\textcolor{DarkDandelion}{9}}}{1}%
+% {.0}{{\textcolor{DarkDandelion}{.0}}}{1}%
+% {.1}{{\textcolor{DarkDandelion}{.1}}}{1}%
+% {.2}{{\textcolor{DarkDandelion}{.2}}}{1}%
+% {.3}{{\textcolor{DarkDandelion}{.3}}}{1}%
+% {.4}{{\textcolor{DarkDandelion}{.4}}}{1}%
+% {.5}{{\textcolor{DarkDandelion}{.5}}}{1}%
+% {.6}{{\textcolor{DarkDandelion}{.6}}}{1}%
+% {.7}{{\textcolor{DarkDandelion}{.7}}}{1}%
+% {.8}{{\textcolor{DarkDandelion}{.8}}}{1}%
+% {.9}{{\textcolor{DarkDandelion}{.9}}}{1}%
+}
+\lstset{
+language=c++,
+literate=,
+backgroundcolor=\color{LightCodeGray},
+style=FormattedConditionalsAndNumbers,
+showstringspaces=false,
+formfeed=newpage,
+tabsize=4,
+upquote=true,
+keywordstyle=\color[HTML]{008000}\bfseries,
+commentstyle=\color[HTML]{5A525A}\itshape,
+stringstyle=\color[HTML]{BA2121},
+numberstyle=\color[HTML]{A9A9A9},numbers=left,classoffset=1,
+morekeywords={np,range},keywordstyle=\color[HTML]{008000},classoffset=2,
+morekeywords={True, False, None, assert},keywordstyle=\color[HTML]{008000}\bfseries,classoffset=3
+}
+%% Square root symbol
+%\usepackage{letltxmacro}
+%\makeatletter \let\oldr@@t\r@@t \def\r@@t#1#2{%
+%\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0 \advance\dimen0-0.3\ht0 \setbox2=\hbox{\vrule height\ht0 depth -\dimen0 width 0.85pt}%
+%{\box0\lower0.68\box2}} \LetLtxMacro{\oldsqrt}{\sqrt} \renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} } \makeatother
+% Matrix Equation
+% Requires packages environ,xstring and forloop
+% Declare all newbies OUTside environment
+\newcommand{\mtrxInBetween}{}
+\newcommand{\ans}[1]{\underrightarrow{\ \ #1\ \ }}
+\newcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt}{#1}}}}
+%
+\newcounter{matrixeqM}% Number of matrices
+\newcounter{matrixeqL}% Number of lines
+%
+\newcounter{matrixeqI}% Inner Loop counter
+\newcounter{matrixeqIt}% Inner Loop trailer counter
+\newcounter{matrixeqItp1}% Inner Loop trailer counter 1 ahead
+\newcounter{matrixeqItp2}% Inner Loop trailer counter 2 ahead
+%
+\newcounter{matrixeqO}% Outer Loop counter
+\newcounter{matrixeqOt}% Outer Loop trailer counter
+\newcounter{matrixeqOtp1}% Outer Loop trailer counter 1 ahead
+%
+\newcounter{matrixeqLm}%
+%--------------------------------------------------
+\NewEnviron{matrixeq}[2][)(]{%
+%Reset counters to 0
+\setcounter{matrixeqM}{0}%
+\setcounter{matrixeqL}{0}%
+\setcounter{matrixeqI}{0}%
+\setcounter{matrixeqIt}{0}%
+\setcounter{matrixeqItp1}{0}%
+\setcounter{matrixeqItp2}{0}%
+\setcounter{matrixeqO}{0}%
+\setcounter{matrixeqOt}{0}%
+\setcounter{matrixeqOtp1}{0}%
+\setcounter{matrixeqLm}{0}%
+\stepcounter{matrixeqOtp1}%
+% Counting lines
+\StrBefore{\BODY ..}{..}[\mtrxeqln]%
+\StrCount{\mtrxeqln#1}{#1}[\mtrxeqct]%
+\StrCount{\BODY ..}{..}[\mtrxeqctln]%
+%
+\setcounter{matrixeqM}{\mtrxeqct}%
+\setcounter{matrixeqL}{\mtrxeqctln}%
+\stepcounter{matrixeqL}%
+\setcounter{matrixeqLm}{\arabic{matrixeqL}}%
+\addtocounter{matrixeqLm}{-1}%
+%
+\stepcounter{matrixeqOt}%
+\stepcounter{matrixeqOtp1}%
+\forloop{matrixeqO}{0}{\value{matrixeqO} < \value{matrixeqM}}{%
+% Reset (mostly) inner counters
+\setcounter{matrixeqIt}{0}%
+\setcounter{matrixeqItp1}{1}%
+\setcounter{matrixeqItp2}{2}%
+\renewcommand{\mtrxInBetween}{}%
+\StrBetween[1,2]{..\BODY ..}{..}{..}[\mtrxline]%
+\StrBetween[\arabic{matrixeqOt},\arabic{matrixeqOtp1}]{#1 \mtrxline#1}{#1}{#1}[\mtrxNHbit]%
+\IfBeginWith{\mtrxNHbit}{ }{}{%
+\StrBefore{\mtrxNHbit}{ }}%
+\begin{#2matrix}%
+\forloop{matrixeqI}{1}{\value{matrixeqI} < \value{matrixeqL}}{%
+\stepcounter{matrixeqIt}%
+\stepcounter{matrixeqItp1}%
+\stepcounter{matrixeqItp2}%
+% Get one line
+\StrBetween[\arabic{matrixeqIt},\arabic{matrixeqItp1}]{..\BODY ..}{..}{..}[\mtrxline]%
+% Get the next line
+\StrBetween[\arabic{matrixeqItp1},\arabic{matrixeqItp2}]{..\BODY ..}{..}{..}[\mtrxNEXTline]%
+% Get the current matrix bit from that line
+\StrBetween[\arabic{matrixeqOt},\arabic{matrixeqOtp1}]{#1 \mtrxline#1}{#1}{#1}[\mtrxbit]%
+\StrBetween[\arabic{matrixeqOt},\arabic{matrixeqOtp1}]{#1\mtrxNEXTline#1}{#1}{#1}[\mtrxNEXTbito]%
+% Look out for operators before wiping out spaces
+\IfBeginWith{\mtrxbit}{ }{}{%
+\StrBehind{\mtrxbit}{ }[\mtrxbit]}%
+\StrDel{\mtrxbit}{ }[\mtrxCleanBit]%
+\StrDel{\mtrxNEXTbito}{ }[\mtrxNEXTbit]%
+\StrSubstitute{\mtrxCleanBit}{,}{&}[\mtrxBitToShow]%
+\IfStrEq{\mtrxNEXTbit}{}{\mtrxBitToShow}{%
+\IfStrEq{\mtrxBitToShow}{}{}{\mtrxBitToShow\\}
+}%
+}\end{#2matrix}%
+\mtrxInBetween%
+\stepcounter{matrixeqOt}%
+\stepcounter{matrixeqOtp1}%
+}%
+\xspace}% End NewEnviron{matrixeq}
+
+% extension of amsmath matrix environments for augmented matrices
+% must be loaded AFTER amsmath
+% e.g \begin{pmatrix}[cc|c]
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+\hskip -\arraycolsep
+\let\@ifnextchar\new@ifnextchar\array{#1}}
+\makeatother
+% augmented matrices end
+
+% Fancyhdr Headers and Footers, and Todo Notes marginpar
+\setlength{\headheight}{15pt}
+\setlength{\columnseprule}{0.1pt}
+\setlength{\marginparwidth}{0.82in}
+\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+\renewcommand{\arraystretch}{1.2}% for the vertical padding
+%\setenumerate{noitemsep}
+\setlist{noitemsep}%list separation
+\pagestyle{fancy}
+\rfoot{Page \thepage}
+\cfoot{}
+\newcommand{\code}[1]{\colorbox{CodeGray}{\lstinline`#1`}}
+% Other new commands and environments
+\newcounter{todoListItems}%For sstodo
+\newcounter{todoListItemsTwo}%Also for sstodo
+\newcommand{\sstodo}[3][]{\addtocounter{todoListItemsTwo}{1}\addtocounter{todoListItems}{1}\hyperlink{todo\thetodoListItems}{\todo[caption={\protect\hypertarget{todo\thetodoListItems}{}#2}, #1]{\hyperlink{todo\thetodoListItems}{#3}}}}
+% Headers and metadata
+\newcommand{\lecture}[6]{\lhead{\textbf{#1\\\courseFullName}}\lfoot{Lecture with \href{mailto:\courseEmail}{#2}\\#5  - #3 - #4}}
+%\lecture{#CourseCode}{#lecturer}{Date}{Time}{#Venue}{on-time}
+\newcommand{\Section}[1]{\rhead{{\large #1}}\section{#1}}
+\newcommand{\SectionTwo}[1]{\rhead{{\large #1}}\section*{#1}\addcontentsline{toc}{section}{#1}}
+\newcommand{\SubSection}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\SubSubSection}[1]{\subsubsection*{#1}\addcontentsline{toc}{subsubsection}{#1}}
+\newcommand{\Plan}[1]{{\textbf{Plan: \ff }}#1}
+% Icons
+\newcommand{\IconsPath}{../../anna-global/icons}
+\newcommand{\Calendar}[1]{\marginpar{\hfill\includegraphics[height=1.3cm]{\IconsPath/calendar}}\sstodo[color=black,noline]{#1}{\color{white}{Schedule}}#1\xspace}
+\newcommand{\Prev}{\textbf{Last lecture we\ldots}\marginpar{\hfill\raisebox{-0.36cm}{\includegraphics[height=1cm]{\IconsPath/previous.pdf}}}\xspace}
+\newcommand{\Play}{\marginpar{\hfill\raisebox{-0.5cm}{\includegraphics[height=1cm]{\IconsPath/play}}}\xspace}
+\newcommand{\ff}{\raisebox{-0.2\baselineskip}{\includegraphics[height=0.85\baselineskip]{\IconsPath/fastforward}}\xspace}
+\newcommand{\nextlecture}[1]{\raisebox{-0.2\baselineskip}{\includegraphics[height=0.85\baselineskip]{\IconsPath/next}}\sstodo[noline,color=HuhPurple]{Next time we will #1}{\includegraphics[height=0.95\baselineskip]{\IconsPath/next}}\ Will #1\xspace}
+\newcommand{\rw}{\raisebox{-0.2\baselineskip}{\includegraphics[height=0.85\baselineskip]{\IconsPath/playback}}\xspace}
+\newcommand{\pause}{\raisebox{-0.2\baselineskip}{\includegraphics[height=0.85\baselineskip]{\IconsPath/pause}}\xspace}
+%\newcommand{\recall}{\rw\textbf{Recall}\xspace}
+\newcommand{\recall}{{\huge\raisebox{-0.1cm}{$\blacktriangleleft$}}\textbf{Recall}\xspace}
+\newcommand{\type}[1]{\textcolor{Purple}{#1}}
+% Tables
+\newcommand{\bl}{}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+% AnnaSpecific
+\newcommand{\Context}[1]{\[\left\{\text{#1}\right\}\]\xspace}
+\newcommand{\TheQuestion}[1]{\textbf{q: }#1\xspace}
+\newcommand{\MeTrying}[2]{\text{\textbf{Try: #2 }}{\color{Blue} #1} \\ }
+\newcommand{\Important}[2]{\colorbox{LimeGreen}{#1:} \KwRd{#2}\xspace}
+\newcommand{\AssumeThis}[1]{\Important{#1}{assume}\xspace}
+\newcommand{\Stressed}[1]{\Important{#1}{$+$stress}\xspace}
+\newlength\sketchwidth
+\newcommand{\LittleSketch}[3]{%
+\settowidth{\sketchwidth}{\includegraphics[width=#1\textwidth,keepaspectratio]{../Media/\MediaPath/#2}}%
+\begin{tabular}{C{\sketchwidth}}\raisebox{-1.5cm}{\includegraphics[width=#1\textwidth,keepaspectratio]{../Media/\MediaPath/#2}}\\ \textbf{#3}\end{tabular}}
+\lstnewenvironment{TestMyCode}{\lstset{language=c++}}{}
+\newenvironment{grouping}[1][]{\smallbreak\noindent\raisebox{-0.5\baselineskip}{$\ulcorner$}\hfill\textbf{-#1-}\hfill\raisebox{-0.5\baselineskip}{$\urcorner$}\\\noindent\ignorespaces{}}{\smallbreak\noindent\raisebox{0.4\baselineskip}{$\llcorner$}\hfill\raisebox{0.4\baselineskip}{$\lrcorner$}\smallbreak}
+\newcommand{\subgroup}[1][]{\smallbreak\noindent{$\vdash\!$\raisebox{0.002cm}{\----}}\hfill\----$\!$\----\textbf{#1}\----$\!$\----\hfill{\raisebox{0.002cm}{\----}\!$\dashv$}\\\noindent\ignorespaces{}}
+%------------------------------------------------------
+% About Anki Flash cards
+\newcommand{\FlashCardMarginMarker}[3]{\sstodo[noline,color=#2]{#1 - #3}{#1}\xspace}
+\newcommand{\Field}[2]{\def\tempti{\textbf{#1}&#2\\}\def\temp{#2}\ifx\temp\empty\else\tempti\fi}%
+\NewEnviron{FlashCard}[4]{% --- Begin General FlashCard
+    \FlashCardMarginMarker{{#1}}{PropertiesOrange}{#2}%
+    \begin{center}%
+    \colorbox{PropertiesOrange}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#2}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#3 - #4}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End General FlashCard
+\NewEnviron{Action}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Action}{DefinitionBlue}{#1}%
+    \begin{center}%
+    \colorbox{DefinitionBlue}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Definition}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Definition}{DefinitionBlue}{#1}%
+    \begin{center}%
+    \colorbox{DefinitionBlue}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{cDefinition}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Definition}{DefinitionBlue}{#1}%
+    \begin{center}%
+    \colorbox{DefinitionBlue}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Properties}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Properties}{PropertiesOrange}{#1}%
+    \begin{center}%
+    \colorbox{PropertiesOrange}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{Properties #1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Steps}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Steps}{PropertiesOrange}{#1}%
+    \begin{center}%
+    \colorbox{PropertiesOrange}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{Steps for #1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.778\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Theorem}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Theorem}{TheoremGreen}{#1}%
+    \begin{center}%
+    \colorbox{TheoremGreen}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Basic}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Basic}{CodeGray}{#1}%
+    \begin{center}%
+    \colorbox{CodeGray}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Vocab}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Vocab}{TheoremGreen}{#1}%
+    \begin{center}%
+    \colorbox{TheoremGreen}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Method}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Method}{MethodOrange}{#1}%
+    \begin{center}%
+    \colorbox{MethodOrange}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Compare}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Compare}{MethodOrange}{#1}%
+    \begin{center}%
+    \colorbox{MethodOrange}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Formula}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Formula}{FormulaGreen}{#1}%
+    \begin{center}%
+    \colorbox{FormulaGreen}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.728\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+\NewEnviron{Questions}[3]{% --- Begin FlashCard
+    \FlashCardMarginMarker{Questions}{FormulaGreen}{#1}%
+    \begin{center}%
+    \colorbox{FormulaGreen}{\parbox{0.95\textwidth}{%
+    \smallbreak\noindent$\ulcorner$\hfill\textbf{#1}\hfill$\urcorner$\\[0cm]\noindent\ignorespaces{}%
+    \begin{tabular}{lp{0.688\textwidth}}\BODY\end{tabular}
+    \smallbreak\noindent$\llcorner$\hfill{\tiny#2 - #3}\hfill$\lrcorner$\smallbreak}}\end{center}}% --- End FlashCard
+
+% Todo notes
+\newcommand{\pleaseturnover}{\vfill\begin{center} [Please turn over] \end{center}\vfill\xspace}
+\newcommand{\WarnMe}{\raisebox{-0.25\baselineskip}{\includegraphics[height=0.9\baselineskip,keepaspectratio]{\IconsPath/NBv2}}\xspace}
+\newcommand{\anaside}[1]{\textcolor{darkgray}{\textit{\# #1 \#}}}
+ \newcommand{\note}[1]{\hl{\textbf{Note:} #1}\xspace}
+ \newcommand{\notice}[1]{\hl{\textbf{Notice that} #1}\xspace}
+ \newcommand{\Refery}[1]{\hl{\textbf{Ref:} #1}\xspace}
+ \newcommand{\huh}{{\textcolor{HuhRed}{\large\textbf{?}}}\sstodo[noline,fancyline,color=HuhRed]{Huh??}{\textbf{huh??}}\xspace}
+   \newcommand{\nb}[1]{\WarnMe%\textbf{#1}
+\todo[inline,nolist,color=YellowOrange]{\textbf{NB:}\ #1}\xspace}
+  \newcommand{\tip}[1]{\todo[inline,nolist,color=LimeGreen]{Tip: #1}\xspace}
+  \newcommand{\tut}[1]{\colorbox{GreenYellow}{#1}\sstodo[noline,color=GreenYellow]{Do: #1}{Do}\xspace}
+  \newcommand{\hmm}[1]{\colorbox{HuhPurple}{#1}\sstodo[noline,color=HuhPurple]{#1}{\hfill $+$ \hfill}\xspace}
+
+\newcommand{\KwRd}[1]{\todo[noline,nolist,color=LimeGreen]{\hfill#1}\xspace}
+
+\newcommand{\tab}{\qquad}
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\pa}{p.a.\xspace}
+\newcommand{\eg}{e.g.\xspace}
+
+%Stunos logic & sequitors?
+\newcommand{\notesif}[1]{\textcolor{orange}{if: }\textcolor{green}{#1}\\\qquad}
+\newcommand{\logic}[1]{\textcolor{PineGreen}{#1}}
+% Math
+%\newcommand{\vect}[1]{\underline{\mathbf{#1}}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\norm}[2][2]{\left\lVert #2 \right\rVert_{#1}}
+\newcommand{\QeD}{\tag*{$\blacksquare$}}
+% Break
+\newcommand{\ThenWeTookAbreak}[2]{\begin{centering}%
+  - Then We Took A Break -%
+\end{centering}}%
+\newcommand{\ThenTheBreakWasOver}[2]{\begin{centering}%
+  - Then We Came Back -%
+\end{centering}}%
+\newcommand{\AndThatWasIt}[2]{
+  \hfill - - End of Lecture - - \hfill $\blacksquare$}
+\reversemarginpar
+
+\newcommand{\BeginNotes}{\renewcommand{\documentclass}[2][]{}\let\oldenddocument\enddocument%
+\renewenvironment{document}{\par}{}%
+\let\odlistoftodos\listoftodos%
+\renewcommand{\listoftodos}{}\xspace}
+\newcommand{\EndNotes}{%
+\let\enddocument\oldenddocument%
+\let\listoftodos\odlistoftodos%
+\xspace}
+\endinput
+%HTML card template for Anki
+.card {
+ font-family: arial;
+ font-size: 20px;
+ text-align: center;
+ color: black;
+ background-color: white;
+}
+
+.latex {
+zoom:25%;
+}
+
+.night_mode img{
+-webkit-filter: invert(1);
+-webkit-transform: translate3d(0,0,0);
+}
+
+.logic {
+color: #058C73
+}
+.type {
+color: #8F44A3
+}
+img{
+vertical-align:middle;
+width:abcdef;
+max-width:90%;
+}
+%Latex "base file" for Anki 
+\documentclass[12pt]{article}
+\special{papersize=3in,5in}
+\usepackage{amssymb,amsmath,enumitem,soul,xspace,array}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+\usepackage[default,tabular]{sourcesanspro}
+\usepackage[frenchmath]{newtxsf}
+\usepackage[eulergreek]{mathastext}
+\usepackage[dvipsnames]{xcolor}
+\setlist{noitemsep}%list separation
+%Logic, type and math
+\newcommand{\type}[1]{\textbf{\textcolor{Purple}{#1}}}
+\newcommand{\logic}[1]{\textcolor{PineGreen}{#1}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\QeD}{\ensuremath{\hfill \blacksquare}}
+% Tables
+\newcommand{\bl}{}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+% extension of amsmath matrix environments for augmented matrices
+% must be loaded AFTER amsmath
+% e.g \begin{pmatrix}[cc|c]
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+\hskip -\arraycolsep
+\let\@ifnextchar\new@ifnextchar\array{#1}}
+\makeatother
+% augmented matrices end
+\newcommand{\note}[1]{\hl{\textbf{Note:} #1}\xspace}
+\newcommand{\huh}{{\textcolor{red}{\huge?}}\xspace}
+\newcommand{\nb}[1]{\colorbox{yellow}{\textbf{NB:}}\ \textbf{#1}\xspace}
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\eg}{e.g.\xspace}
+\everymath{\displaystyle}
+\begin{document}

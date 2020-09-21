@@ -1,0 +1,10 @@
+cmder/*
+!cmder/config/user-ConEmu.xml"
+*.bat
+*.sh
+*.swp
+*.swo
+*.un~
+.stfolder
+*syncless/
+*syncless*
