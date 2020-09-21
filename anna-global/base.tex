@@ -259,7 +259,7 @@ morekeywords={True, False, None, assert},keywordstyle=\color[HTML]{008000}\bfser
 \settowidth{\sketchwidth}{\includegraphics[width=#1\textwidth,keepaspectratio]{../Media/\MediaPath/#2}}%
 \begin{tabular}{C{\sketchwidth}}\raisebox{-1.5cm}{\includegraphics[width=#1\textwidth,keepaspectratio]{../Media/\MediaPath/#2}}\\ \textbf{#3}\end{tabular}}
 \lstnewenvironment{TestMyCode}{\lstset{language=c++}}{}
-\newenvironment{grouping}[1][]{\smallbreak\noindent\raisebox{-0.5\baselineskip}{$\ulcorner$}\hfill\textbf{-#1-}\hfill\raisebox{-0.5\baselineskip}{$\urcorner$}\\\noindent\ignorespaces{}}{\smallbreak\noindent\raisebox{0.4\baselineskip}{$\llcorner$}\hfill\raisebox{0.4\baselineskip}{$\lrcorner$}\smallbreak}
+\newenvironment{grouping}[1][]{\def\temp{#1}\ifx\temp\empty{}\else\addcontentsline{toc}{subsubsection}{#1}\fi\smallbreak\noindent\raisebox{-0.5\baselineskip}{$\ulcorner$}\hfill\textbf{-#1-}\hfill\raisebox{-0.5\baselineskip}{$\urcorner$}\\\noindent\ignorespaces{}}{\smallbreak\noindent\raisebox{0.4\baselineskip}{$\llcorner$}\hfill\raisebox{0.4\baselineskip}{$\lrcorner$}\smallbreak}
 \newcommand{\subgroup}[1][]{\smallbreak\noindent{$\vdash\!$\raisebox{0.002cm}{\----}}\hfill\----$\!$\----\textbf{#1}\----$\!$\----\hfill{\raisebox{0.002cm}{\----}\!$\dashv$}\\\noindent\ignorespaces{}}
 %------------------------------------------------------
 % About Anki Flash cards
