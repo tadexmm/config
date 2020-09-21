@@ -1,3 +1,4 @@
+*/.netrwhist
 cmder/*
 !cmder/config/user-ConEmu.xml"
 *.bat
@@ -8,5 +9,3 @@ cmder/*
 .stfolder
 *syncless/
 *syncless*
-vimfiles/.netrwhist
-vimfiles/_.netrwhist
