@@ -1,4 +1,5 @@
-*/.netrwhist
+*.netrwhist
+*_.netrwhist
 cmder/*
 !cmder/config/user-ConEmu.xml"
 *.bat
