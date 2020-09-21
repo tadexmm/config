@@ -8,5 +8,5 @@ cmder/*
 .stfolder
 *syncless/
 *syncless*
-.netrwhist
-_.netrwhist
+vimfiles/.netrwhist
+vimfiles/_.netrwhist
